@@ -5,6 +5,7 @@ sns.set(rc={'figure.figsize': (8, 8)})
 
 from alibi.explainers.counterfactual import CounterFactual
 import tensorflow as tf
+
 tf.compat.v1.disable_eager_execution()
 import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_california_housing
@@ -33,13 +34,16 @@ X_test_sample_high = X_test_sample.copy()
 X_test_sample_high.MedInc = 4.2
 model.predict(X_test_sample_high)
 
-shape = (1,) + X_train.shape[1:]
-cf = CounterFactual(model.predict_proba, shape)
+cf = CounterFactual(model.predict_proba, (1,) + X_train.shape[1:])
 expl = cf.explain(np.array(X_test_sample_high))
-cf_df = pd.DataFrame(expl.cf['X'] / X_test_sample_high.values)
-cf_df.columns = X_test_sample_high.columns
+cf_df_original = pd.DataFrame(expl.cf['X'])
+cf_df_original.columns = X_test_sample_high.columns
+cf_df_scaled = pd.DataFrame(expl.cf['X'] / X_test_sample_high.values)
+cf_df_scaled.columns = X_test_sample_high.columns
 
-change = pd.DataFrame([(c, v) for c, v in zip(cf_df.values[0], cf_df.columns)])
+change = pd.DataFrame([(c, v) for c, v in zip(cf_df_scaled.values[0], cf_df_scaled.columns)])
 change.columns = ['change of value', 'change']
-sns.barplot(x="change", y="change of value", data=change.sort_values(by=['change'], ascending=False, axis=0), color='lightblue')
+sns.barplot(x="change", y="change of value", data=change.sort_values(by=['change'], ascending=False, axis=0),
+            color='lightblue')
 _ = plt.title("change to get a cf example")
+plt.show()
