@@ -13,7 +13,7 @@ from tensorflow.keras.applications.imagenet_utils import decode_predictions
 inet_model = inc_net.InceptionV3()
 
 # Read the image and transform it into an image that can be read by the inception V3 model
-image = skimage.io.imread(os.path.join('data', 'cat_image.jpg'))
+image = skimage.io.imread(os.path.join('../data', 'cat_image.jpg'))
 image = skimage.transform.resize(image, (299, 299))
 image = (image - 0.5) * 2
 image = np.expand_dims(image, axis=0)

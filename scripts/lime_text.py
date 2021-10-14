@@ -13,17 +13,17 @@ from sklearn.pipeline import make_pipeline
 dataset = tf.keras.utils.get_file(fname="aclImdb_v1.tar.gz",
                                   origin="https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz",
                                   untar=True,
-                                  cache_dir='.',
+                                  cache_dir='..',
                                   cache_subdir='')
 
 # Organise the data
 df = pd.DataFrame([], columns=['question_text', 'target'])
-for file in os.listdir(os.path.join('aclImdb', 'test', 'neg')):
-    with open(os.path.join('aclImdb', 'test', 'neg', file), encoding="utf-8") as f:
+for file in os.listdir(os.path.join('../aclImdb', 'test', 'neg')):
+    with open(os.path.join('../aclImdb', 'test', 'neg', file), encoding="utf-8") as f:
         df = df.append(pd.DataFrame([[f.readlines()[0], 0]], columns=['question_text', 'target']))
 
-for file in os.listdir(os.path.join('aclImdb', 'test', 'pos')):
-    with open(os.path.join('aclImdb', 'test', 'pos', file), encoding="utf-8") as f:
+for file in os.listdir(os.path.join('../aclImdb', 'test', 'pos')):
+    with open(os.path.join('../aclImdb', 'test', 'pos', file), encoding="utf-8") as f:
         df = df.append(pd.DataFrame([[f.readlines()[0], 1]], columns=['question_text', 'target']))
 
 print("Dataframe shape : ", df.shape)
