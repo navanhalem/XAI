@@ -31,7 +31,7 @@ temp_2, mask_2 = explanation.get_image_and_mask(explanation.top_labels[0], posit
 temp_3, mask_3 = explanation.get_image_and_mask(explanation.top_labels[1], positive_only=False, num_features=10,
                                                 hide_rest=False)
 
-# plot the original image and the (area's that contributed to the) predictions
+# Plot the original image and the (area's that contributed to the) predictions
 fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 15))
 ax1.imshow(image[0])
 ax2.imshow(mark_boundaries(temp_2, mask_2))
