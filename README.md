@@ -1,6 +1,6 @@
 # XAI in de praktijk
 
-Deze XAI workshop is ontwikkeld in het kader van een intern project binnen het RIG om meer ervaring te krijgen over XAI technieken, en om deze kennis te kunenn delen. 
+Deze XAI workshop is ontwikkeld in het kader van een intern project binnen het RIG om meer ervaring te krijgen met XAI technieken en om deze kennis te kunnen delen. 
 Het doel van de workshop is om te oefenen met XAI-technieken in de praktijk.
 Als basis is de structuur van het [boek](https://ema.drwhy.ai/) van Biecek and Burzykowski gebruikt.
 
