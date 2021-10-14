@@ -1,17 +1,19 @@
+import os
+
 import numpy as np
 import skimage
+from lime import lime_image
+from matplotlib import pyplot as plt
 from skimage import io, transform
+from skimage.segmentation import mark_boundaries
 from tensorflow.keras.applications import inception_v3 as inc_net
 from tensorflow.keras.applications.imagenet_utils import decode_predictions
-from lime import lime_image
-from skimage.segmentation import mark_boundaries
-from matplotlib import pyplot as plt
 
 # Load the inception V3 model
 inet_model = inc_net.InceptionV3()
 
 # Read the image and transform it into an image that can be read by the inception V3 model
-image = skimage.io.imread('cat_image.jpg')
+image = skimage.io.imread(os.path.join('data', 'cat_image.jpg'))
 image = skimage.transform.resize(image, (299, 299))
 image = (image - 0.5) * 2
 image = np.expand_dims(image, axis=0)
