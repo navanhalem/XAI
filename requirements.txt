@@ -9,3 +9,5 @@ dalex==1.3.0
 alibi==0.6.0
 tensorflow==2.5.1
 scikit_learn==0.24.2
+ipywidgets
+jupyterlab
